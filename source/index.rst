@@ -193,7 +193,7 @@ GitHub Actionsの使い方
 
 https://raw.githubusercontent.com/mursts/python-tokai-41/master/.github/workflows/main.yml
 
-.. code-block:: language
+.. code-block:: yaml
 
    name: Publish
 
