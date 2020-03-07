@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SphinxとGitHub Actionsを使ってプレゼンの資料を作る</title>
+    <meta name="description" content="SphinxとGitHub Actionsを使ってプレゼンの資料を作る" >
+    <script>
+      var notesEnabled =true;
+      var sections = [];
+      var titleNotes = [];
+    </script>
+    <meta charset='utf-8'>
+
+    <meta property="og:title" content="SphinxとGitHub Actionsを使ってプレゼンの資料を作る">
+    <meta property="og:description" content="SphinxとGitHub Actionsを使ってプレゼンの資料を作る">
+
+    <meta name="twitter:title" content="SphinxとGitHub Actionsを使ってプレゼンの資料を作る">
+    <meta name="twitter:description" content="SphinxとGitHub Actionsを使ってプレゼンの資料を作る">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/notes.css" type="text/css" />
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+    <script>
+    </script>
+  </head>
+  <body style='display: none'>
+    
+  <div class="section" id="sphinxgithub-actions">
+<h1>SphinxとGitHub Actionsを使ってプレゼンの資料を作る<a class="headerlink" href="#sphinxgithub-actions" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">2020/03/07 Python東海 41th</div>
+</div>
+<div class="section" id="id1">
+<h2>私は<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>三浦 智 (&#64;mursts)</p>
+<ul>
+<li><p>Python東海 管理人</p></li>
+<li><p>Python Boot Camp in 愛知 現地スタッフ</p></li>
+<li><p>GCPUG Nagoya オーガナイザー</p></li>
+</ul>
+</li>
+</ul>
+<p>–</p>
+<img alt="_images/comunity.jpg" src="_images/comunity.jpg" />
+</div>
+<div class="section" id="id2">
+<h2>内容<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Sphinxとは</p></li>
+<li><p>GitHub Actionsとは</p></li>
+<li><p>デモ</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>内容<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Sphinxとは</strong></p></li>
+<li><p>GitHub Actionsとは</p></li>
+<li><p>デモ</p></li>
+</ul>
+</div>
+<div class="section" id="sphinx">
+<h2>Sphinxとは<a class="headerlink" href="#sphinx" title="Permalink to this headline">¶</a></h2>
+<p>Python製のドキュメント作成ツール</p>
+<p>Restructuredtextやで記述して、HTML、PDF、Wordなど様々なフォーマットで出力が可能</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Markdownでも書くことはできる</p>
+</div>
+<div class="section" id="id4">
+<h3>参考<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/">https://www.sphinx-doc.org/</a></p></li>
+<li><p><a class="reference external" href="http://www.sphinx-doc.org/ja/master/index.html">http://www.sphinx-doc.org/ja/master/index.html</a></p></li>
+<li><p><a class="reference external" href="https://sphinx-users.jp/">https://sphinx-users.jp/</a></p></li>
+<li><p><a class="reference external" href="https://www.slideshare.net/shimizukawa/sphinx-6084667">ドキュメントを作りたくなってしまう魔法のツールSphinx</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>Sphinxとは<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>Sphinxは知らなくてもSphinxで作成されたものは必ず見ているはず</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/">https://docs.python.org/3/</a></p></li>
+<li><p><a class="reference external" href="https://requests.readthedocs.io/en/master/">https://requests.readthedocs.io/en/master/</a></p></li>
+<li><p><a class="reference external" href="https://docs.djangoproject.com/en/3.0/">https://docs.djangoproject.com/en/3.0/</a></p></li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h2>Sphinxとは<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>使い方は簡単</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ pip install sphinx
+$ sphinx-quickstart
+</pre></div>
+</div>
+<p>これでドキュメントを書くためのフォーマットが作成される</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ tree -L <span class="m">1</span>
+.
+├── Makefile
+├── build
+├── docs
+├── make.bat
+└── <span class="nb">source</span>
+    ├── _static
+    ├── _templates
+    └── index.rst
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>Sphinxとは<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p>選択するテンプレートによって先程のドキュメントサイトやこの資料のようなプレゼンテーションを作成できる</p>
+<p><a class="reference external" href="https://mursts.github.io/gcpug-nagoya-02/">https://mursts.github.io/gcpug-nagoya-02/</a></p>
+</div>
+<div class="section" id="id9">
+<h2>内容<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Sphinxとは</p></li>
+<li><p><strong>GitHub Actionsとは</strong></p></li>
+<li><p>デモ</p></li>
+</ul>
+</div>
+<div class="section" id="github-actions">
+<h2>GitHub Actionsとは<a class="headerlink" href="#github-actions" title="Permalink to this headline">¶</a></h2>
+<p>GitHub上のイベントをトリガーとした(定期実行もあり)CI/CDのサービス</p>
+<p><a class="reference external" href="https://github.co.jp/features/actions">https://github.co.jp/features/actions</a></p>
+<p>パブリックリポジトリは無料で、プライベートでも無料枠がある</p>
+</div>
+<div class="section" id="id10">
+<h2>GitHub Actionsの使い方<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id11">
+<h3>ワークフローを設定する<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="_images/github_actions_1.jpg"><img alt="_images/github_actions_1.jpg" src="_images/github_actions_1.jpg" style="width: 1005.9px; height: 332.5px;" /></a>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>画面から作成しなくても、 <cite>.github/workflows</cite> にファイルを作成しても可</p>
+</div>
+</div>
+</div>
+<div class="section" id="id12">
+<h2>GitHub Actionsの使い方<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="_images/github_actions_2.jpg"><img alt="_images/github_actions_2.jpg" src="_images/github_actions_2.jpg" style="width: 1005.1999999999999px; height: 374.5px;" /></a>
+</div>
+<div class="section" id="id13">
+<h2>GitHub Actionsの使い方<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="_images/github_actions_3.jpg"><img alt="_images/github_actions_3.jpg" src="_images/github_actions_3.jpg" style="width: 1004.4999999999999px; height: 620.9px;" /></a>
+</div>
+<div class="section" id="id14">
+<h2>GitHub Actionsの使い方<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<p>トリガー</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a basic workflow to help you get started with Actions</span>
+
+<span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CI</span>
+
+<span class="c1"># Controls when the action will run. Triggers the workflow on push or pull request</span>
+<span class="c1"># events but only for the master branch</span>
+<span class="nt">on</span><span class="p">:</span>
+  <span class="nt">push</span><span class="p">:</span>
+    <span class="nt">branches</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="nv">master</span> <span class="p p-Indicator">]</span>
+  <span class="nt">pull_request</span><span class="p">:</span>
+    <span class="nt">branches</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="nv">master</span> <span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id15">
+<h2>GitHub Actionsの使い方<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<p>ジョブ</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># A workflow run is made up of one or more jobs that can run sequentially or in parallel</span>
+<span class="nt">jobs</span><span class="p">:</span>
+  <span class="c1"># This workflow contains a single job called &quot;build&quot;</span>
+  <span class="nt">build</span><span class="p">:</span>
+    <span class="c1"># The type of runner that the job will run on</span>
+    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+
+    <span class="c1"># Steps represent a sequence of tasks that will be executed as part of the job</span>
+    <span class="nt">steps</span><span class="p">:</span>
+    <span class="c1"># Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
+
+    <span class="c1"># Runs a single command using the runners shell</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Run a one-line script</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">echo Hello, world!</span>
+
+    <span class="c1"># Runs a set of commands using the runners shell</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Run a multi-line script</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">echo Add other actions to build,</span>
+        <span class="no">echo test, and deploy your project.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id16">
+<h2>GitHub Actionsの使い方<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<p>今回作ったWorkflow</p>
+<p><a class="reference external" href="https://raw.githubusercontent.com/mursts/python-tokai-41/master/.github/workflows/main.yml">https://raw.githubusercontent.com/mursts/python-tokai-41/master/.github/workflows/main.yml</a></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Publish</span>
+
+<span class="nt">on</span><span class="p">:</span>
+  <span class="nt">push</span><span class="p">:</span>
+    <span class="nt">branches</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="nv">master</span> <span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+  <span class="nt">publish</span><span class="p">:</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Build</span>
+    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+    <span class="nt">steps</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Set up Python</span>
+      <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v1</span>
+      <span class="nt">with</span><span class="p">:</span>
+        <span class="nt">python-version</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3.8</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">python -m pip install --upgrade pip</span>
+        <span class="no">pip install -r requirements.txt</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Build sphinx</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">make html</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Deploy</span>
+      <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">peaceiris/actions-gh-pages@v3</span>
+      <span class="nt">with</span><span class="p">:</span>
+        <span class="nt">github_token</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ secrets.ACTIONS_DEPLOY_KEY }}</span>
+        <span class="nt">publish_dir</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./build/html</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id17">
+<h2>GitHub Actionsの使い方<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id18">
+<h3>トークンを設定する<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>GITHUB_TOKEN</p>
+<ul>
+<li><p>Actionsを設定したときに自動でできるトークン</p></li>
+<li><p>今回はこれを使用した</p></li>
+</ul>
+</li>
+<li><p>DEPLOY_KEY</p>
+<ul>
+<li><p>自分で鍵を作ってGitHubに登録する</p></li>
+</ul>
+</li>
+<li><p>PERSONAL_TOKEN</p>
+<ul>
+<li><p>settingsから作成するトークン</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id19">
+<h2>GitHub Actionsの使い方<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<p>準備ができたらrstファイルを編集してmasterにPush</p>
+</div>
+<div class="section" id="id20">
+<h2>内容<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Sphinxとは</p></li>
+<li><p>GitHub Actionsとは</p></li>
+<li><p><strong>デモ</strong></p></li>
+</ul>
+</div>
+<div class="section" id="id21">
+<h2>デモ<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id22">
+<h2>ご静聴ありがとうございました<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+  </body>
+  <div id="help">
+      Use the left and right arrow keys or click the left and right
+      edges of the page to navigate between slides.<br>
+      (Press 'H' or navigate to hide this message.)
+  </div>
+  <script type="text/javascript" src="_static/js/init.js"></script>
+  <script type="text/javascript" src="_static/js/notes.js"></script>
+  <script type="text/javascript" src="_static/js/slides.js"></script>
+</html>
